@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-md border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"> blisoNote </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto navbar-bground">
+        <a
+          class="nav-link active text-center"
+          aria-current="page"
+          href="/listings"
+          style="margin-right: 1rem"
+          >Home</a
+        >
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="/profile"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          <% if (currUser && currUser.image.url) { %>
+            <img src="<%= currUser.image.url %>" class="profile-img-icon">
+          <% } else { %>
+            <i class="fa-solid fa-circle-user fa-2x"></i>
+          <% } %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <% if(!currUser) {%>
+            <li><a class="dropdown-item" href="/signup">Sign up</a></li>
+            <li><a class="dropdown-item" href="/login">Login</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <% } %> <% if(currUser) {%>
+            <li>
+              <a class="dropdown-item profile" href="/profile">Your Profile</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <% } %> <% if(currUser) {%>
+            <li><a class="dropdown-item" href="/logout">Log out</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <% } %>
+            <li style="font-size: 0.85rem">&copy;Apurva Srivastava(2025)</li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </div>
+</nav>

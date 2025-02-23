@@ -1,0 +1,27 @@
+<% layout("/layouts/boilerplate") -%>
+
+<div class="col mt-3">
+  <div class="card listing-card h-100">
+    <div class="card-body">
+      <h5 class="card-title"><%= listing.title %></h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">
+        Date: <%= new Date(listing.date).toLocaleDateString("en-IN", { day:
+        "numeric", month: "long", year: "numeric" }) %>
+      </h6>
+      <p class="card-text"><%= listing.content %></p><br />
+      <p class="card-time">
+        <%= new Date(listing.date).toLocaleTimeString("en-IN", { hour:
+        "2-digit", minute: "2-digit", hour12: true }) %>
+      </p>
+
+      <div class="btns">
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-sm btn-dark col-1 offset-5 edit-btn">Edit</a>
+      </div>
+
+      <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+        <button class="btn btn-danger btn-sm col-1 offset-5 mt-1">Delete</button>
+      </form>
+
+    </div>
+  </div>
+</div>

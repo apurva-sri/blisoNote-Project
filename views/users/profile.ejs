@@ -1,0 +1,24 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="profile-container">
+  <% if (currUser && currUser.image.url) { %>
+  <img
+    src="<%= user.image.url %>"
+    class="profile-img img-fluid"
+    alt="profile photo"
+  />
+  <% } else { %>
+    <i class="fa-solid fa-circle-user fa-6x"></i>
+  <% } %>
+  <figcaption class="text-center">
+    <b><%= user.username %></b>
+    <br />
+    <hr />
+    <p><%= user.email %></p>
+    <hr />
+    <p>
+      DOB: &nbsp; <%= new Date(user.dob).toLocaleDateString("en-IN", { day:
+      "numeric", month: "long", year: "numeric" }) %>
+    </p>
+  </figcaption>
+</div>

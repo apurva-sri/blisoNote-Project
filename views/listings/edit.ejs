@@ -1,0 +1,62 @@
+<% layout("/layouts/boilerplate") -%>
+<style>
+  label {
+    color: pink;
+  }
+</style>
+<div class="row mt-2">
+  <div class="col-8 offset-2">
+    <h3 class="text-center" style="color: pink">Edit Note</h3>
+    <br />
+    <br />
+    <form
+      method="POST"
+      action="/listings/<%= listing._id %>?_method=PUT"
+      class="needs-validation"
+      novalidate
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label"><b>Title:</b></label>
+        <input
+          name="listing[title]"
+          value="<%= listing.title %>"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please enter Title</div>
+      </div>
+
+      <div class="mb-3 mt-4">
+        <label for="content" class="form-label"><b>Content:</b></label>
+        <textarea name="listing[content]" class="form-control text-area" required>
+<%= listing.content %></textarea
+        >
+        <div class="invalid-feedback">Please enter Content</div>
+      </div>
+
+      <div class="mb-3 mt-4">
+        <label for="date" class="form-label">
+          <b
+            >Old Date: <%= listing.date.toLocaleDateString("en-IN", { day:
+            "numeric", month: "long", year: "numeric" }) %> <br />New Date:<br
+          /></b>
+        </label>
+        <input
+          name="listing[date]"
+          value="<%= listing.date.toISOString().split('T')[0] %>"
+          type="datetime-local"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please enter a valid date</div>
+      </div>
+
+      <button
+        class="btn btn-dark mb-3"
+        style="display: flex; justify-content: center; align-items: center">
+        Save
+      </button>
+    </form>
+  </div>
+</div>
