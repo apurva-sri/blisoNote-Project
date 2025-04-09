@@ -3,7 +3,10 @@ const Notelisting = require("../models/listing.js");
 module.exports.index = async (req, res) => {
   try {
     const userListings = res.locals.userListings || [];
-    res.render("./listings/index.ejs", { allListings: userListings , showFooter: true});
+    res.render("./listings/index.ejs", {
+      allListings: userListings,
+      showFooter: true,
+    });
   } catch (error) {
     req.flash("error", "Cannot fetch listings");
     res.redirect("/listings");
@@ -18,7 +21,7 @@ module.exports.createListing = async (req, res) => {
   const newListing = new Notelisting({
     title: req.body.listing.title,
     content: req.body.listing.content,
-    date: new Date(),
+    // date: new Date(),
   });
   newListing.owner = req.user._id;
   await newListing.save();
@@ -47,16 +50,17 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
-  let { title, content, date } = req.body.listing;
-  if (!title || !content || !date) {
+  let { title, content } = req.body.listing;
+
+  if (!title || !content) {
     req.flash("error", "All fields are required!");
     return res.redirect(`/listings/${id}/edit`);
   }
-  const updatedDate = new Date(date);
+
   try {
     const listing = await Notelisting.findByIdAndUpdate(
       id,
-      { title, content, date: updatedDate },
+      { title, content },
       { new: true }
     );
     req.flash("success", "Note updated successfully!");

@@ -34,24 +34,7 @@
         >
         <div class="invalid-feedback">Please enter Content</div>
       </div>
-
-      <div class="mb-3 mt-4">
-        <label for="date" class="form-label">
-          <b
-            >Old Date: <%= listing.date.toLocaleDateString("en-IN", { day:
-            "numeric", month: "long", year: "numeric" }) %> <br />New Date:<br
-          /></b>
-        </label>
-        <input
-          name="listing[date]"
-          value="<%= listing.date.toISOString().split('T')[0] %>"
-          type="datetime-local"
-          class="form-control"
-          required
-        />
-        <div class="invalid-feedback">Please enter a valid date</div>
-      </div>
-
+      
       <button
         class="btn btn-dark mb-3"
         style="display: flex; justify-content: center; align-items: center">

@@ -11,14 +11,12 @@
         <div class="card-body" style="flex-grow: 1">
           <h5 class="card-title"><%= listing.title %></h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">
-            Date: <%= new Date(listing.date).toLocaleDateString("en-IN", { day:
-            "numeric", month: "long", year: "numeric" }) %>
+            Date: <%= moment(listing.date).tz("Asia/Kolkata").format("DD MMMM YYYY") %>
           </h6>
           <p class="card-text"><%= listing.content %></p>
         </div>
         <div class="card-footer text-muted text-center">
-          <%= new Date(listing.date).toLocaleTimeString("en-IN", { hour:
-          "2-digit", minute: "2-digit", hour12: true }) %>
+          <%= moment(listing.date).tz("Asia/Kolkata").format("hh:mm A") %>
         </div>
       </a>
     </div>

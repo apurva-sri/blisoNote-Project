@@ -25,6 +25,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
+const moment = require("moment-timezone");
+app.locals.moment = moment; // Now you can use it in your EJS files
+
 
 const dbUrl = process.env.ATLASDB_URL;
 
